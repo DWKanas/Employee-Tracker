@@ -116,7 +116,7 @@ function addEmp() {
             employeeArray.push(employee);
             console.log(employeeArray)
 
-            const sql = `INSERT INTO employee(first_name, last_name, role_id) VALUES (?, ?, ?);`;
+            const sql = `INSERT INTO employees(first_name, last_name, role_id) VALUES (?, ?, ?);`;
             const params = [employee.first_name, employee.last_name, employee.role_id]
             db.query(sql, params, (err, data) => {
                 if (err) {
@@ -135,7 +135,7 @@ function addEmp() {
 function addRole() {
     let departmentChoices = [];
     let depChoiceMapped = [];
-    const sql = `SELECT id, name FROM department;`;
+    const sql = `SELECT id, name FROM departments;`;
     db.query(sql, (err, data) => {
         if (err) {
             console.error(err);
@@ -173,7 +173,7 @@ function addRole() {
             )
             console.log(role);
             roleArray.push(role);
-            const sql = `INSERT INTO role(title, salary, department_id) VALUES (?, ?, ?);`;
+            const sql = `INSERT INTO roles(title, salary, department_id) VALUES (?, ?, ?);`;
             const params = [role.title, role.salary, role.department]
             db.query(sql, params, (err, data) => {
                 if (err) {
@@ -206,7 +206,7 @@ function addDep() {
                 answers.depName,
             )
             departmentArray.push(department);
-            const sql = `INSERT INTO department(name) VALUES (?);`;
+            const sql = `INSERT INTO departments(name) VALUES (?);`;
             const params = [department.name]
             db.query(sql, params, (err, data) => {
                 if (err) {
@@ -223,7 +223,7 @@ function addDep() {
 };
 
 function viewDepartment() {
-    const sql = `SELECT * FROM department;`;
+    const sql = `SELECT * FROM departments;`;
     db.query(sql, function (err, data) {
         if (err) {
             console.error(err);
@@ -238,7 +238,7 @@ function viewDepartment() {
 }
 
 function viewEmployees() {
-    const sql = `SELECT * FROM employee;`;
+    const sql = `SELECT * FROM employees;`;
     db.query(sql, function (err, data) {
         if (err) {
             console.error(err);
@@ -252,7 +252,7 @@ function viewEmployees() {
     });
 }
 function viewRoles() {
-    const sql = `SELECT * FROM role;`;
+    const sql = `SELECT * FROM roles;`;
     db.query(sql, function (err, data) {
         if (err) {
             console.error(err);
